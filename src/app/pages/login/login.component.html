@@ -1,0 +1,54 @@
+<div class="header bg-gradient-green py-7 py-lg-8">
+    <div class="separator separator-bottom separator-skew zindex-100">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+    </div>
+</div>
+<!-- Page content -->
+<div class="container mt--8 pb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-7">
+            <div class="card bg-secondary shadow border-0">
+                <div class="card-header bg-transparent pb-3 container">
+                    <p style="text-align:center"><img src="../../../assets/logo_periferia.png" style="height: 100px;" alt="..."></p>
+                </div>
+                <div class="card-body px-lg-5 py-lg-5">
+                    <form role="form" [formGroup]="frm" (ngSubmit)="sendData()">
+                        <div class="form-group mb-3">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ni ni-email-83"
+                                            style="color: black;"></i></span>
+                                </div>
+                                <input class="form-control" placeholder="Email" type="email" name="UserName" formControlName="UserName" [class.is-invalid]="UserNameNotValid">
+                            </div>
+                            <small *ngIf="UserNameNotValid" class="text-danger">
+                                Campo requerido.
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ni ni-lock-circle-open"
+                                            style="color: black;"></i></span>
+                                </div>
+                                <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" placeholder="Password" formControlName="Password" [class.is-invalid]="PasswordNotValid">
+                                <span class="input-group-text" id="basic-addon2">
+                                    <i class="fa" [ngClass]="{'fa-eye-slash': !fieldTextType,'fa-eye': fieldTextType}" (click)="toggleFieldTextType()" style="color: black;"></i>
+                                </span>
+                            </div>
+                            <small *ngIf="PasswordNotValid" class="text-danger">
+                                Campo requerido.
+                            </small>
+                        </div>
+                        <br>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-default  my-3">Ingresar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
