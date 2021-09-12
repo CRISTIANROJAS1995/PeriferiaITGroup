@@ -15639,7 +15639,7 @@ img.center {
     bottom: .25rem;
     left: 0;
     content: '';
-    border-left: 2px solid #5e72e4;
+    border-left: 4px solid #5e72e4;
 }
 
 .navbar-vertical .navbar-nav .nav-link>i {
@@ -15764,7 +15764,7 @@ img.center {
     bottom: .25rem;
     left: 0;
     border-bottom: 0;
-    border-left: 2px solid #5e72e4;
+    border-left: 4px solid #5e72e4;
 }
 
 .navbar-vertical.navbar-expand-xs .navbar-nav .nav .nav-link {
@@ -15866,7 +15866,7 @@ img.center {
         bottom: .25rem;
         left: 0;
         border-bottom: 0;
-        border-left: 2px solid #5e72e4;
+        border-left: 4px solid #5e72e4;
     }
     .navbar-vertical.navbar-expand-sm .navbar-nav .nav .nav-link {
         padding-left: 3.75rem;
@@ -15963,7 +15963,7 @@ img.center {
         bottom: .25rem;
         left: 0;
         border-bottom: 0;
-        border-left: 2px solid #5e72e4;
+        border-left: 4px solid #5e72e4;
     }
     .navbar-vertical.navbar-expand-md .navbar-nav .nav .nav-link {
         padding-left: 3.75rem;
@@ -16060,7 +16060,7 @@ img.center {
         bottom: .25rem;
         left: 0;
         border-bottom: 0;
-        border-left: 2px solid #5e72e4;
+        border-left: 4px solid #5e72e4;
     }
     .navbar-vertical.navbar-expand-lg .navbar-nav .nav .nav-link {
         padding-left: 3.75rem;
@@ -16157,7 +16157,7 @@ img.center {
         bottom: .25rem;
         left: 0;
         border-bottom: 0;
-        border-left: 2px solid #5e72e4;
+        border-left: 4px solid #5e72e4;
     }
     .navbar-vertical.navbar-expand-xl .navbar-nav .nav .nav-link {
         padding-left: 3.75rem;
@@ -17894,4 +17894,20 @@ html:not([dir='rtl']) .noUi-horizontal .noUi-handle {
 .scrollbar-inner .scroll-element.scroll-x {
     bottom: 0;
     height: 3px;
+}
+
+.full-width-image {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+}
+
+.full-width-image img {
+    width: 100%;
+}
+
+.rojo {
+    color: red;
+    font-weight: bolder;
 }
