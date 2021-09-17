@@ -21,7 +21,7 @@ export class ProductService {
     return this.http.get(`${environment.baseUrl}/Process/GetProducts`, { headers: reqHeader });
   }
 
-  getProduct(idProduct: number) {
+  getProduct(idProduct: any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + localStorage.getItem('token')

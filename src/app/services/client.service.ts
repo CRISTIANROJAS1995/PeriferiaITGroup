@@ -21,7 +21,7 @@ export class ClientService {
     return this.http.get(`${environment.baseUrl}/Process/GetClients`, { headers: reqHeader });
   }
 
-  GetClient(idClient: number) {
+  getClient(idClient: any) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + localStorage.getItem('token')

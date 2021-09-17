@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(private _userService: UserService, private route: ActivatedRoute, private fb: FormBuilder, public router: Router) {
     this.frm = this.fb.group({
-      UserName: ['', [Validators.required]],
-      Password: ['', [Validators.required]],
+      UserName: ['1075292145', [Validators.required]],
+      Password: ['JuanPablo04%', [Validators.required]],
     });
   }
 
@@ -60,7 +60,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   sendData() {
-    debugger;
 
     if (this.frm.invalid) {
       return Object.values(this.frm.controls).forEach(control => {

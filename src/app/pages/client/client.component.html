@@ -1,1 +1,81 @@
-<p>client works!</p>
+<div class="header bg-gradient-dark pb-3 pt-5 pt-md-6">
+    <div class="container-fluid mt-5">
+        <div class="header-body">
+        </div>
+    </div>
+</div>
+<!-- Page content -->
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-xl-8 order-xl-1">
+            <div class="card bg-secondary shadow">
+                <div class="card-header bg-white border-0">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0"><i class="fas fa-list-ul"></i>&nbsp;&nbsp;{{title}}</h3>
+                        </div>
+                        <div class="col-4 text-right">
+                            <a class="btn btn-sm btn-danger" [routerLink]="['/consult-client']"><i class="fas fa-undo-alt"></i>&nbsp;Volver</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form role="form" [formGroup]="frm" (ngSubmit)="saveData()">
+                        <h6 class="heading-small text-muted mb-3">Todos los campos con el <span class="rojo"> *</span> son requeridos.</h6>
+                        <div class="pl-lg-4 mt-4">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="FirstName">Nombres<span class="rojo"> *</span></label>
+                                        <input type="text" id="FirstName" class="form-control" placeholder="" formControlName="FirstName" [class.is-invalid]="firstNameNotValid">
+                                        <small *ngIf="firstNameNotValid" class="text-danger">
+                                            Ingrese los nombres...
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="LastName">Apellidos<span class="rojo"> *</span></label>
+                                        <input type="text" id="LastName" class="form-control" placeholder="" formControlName="LastName" [class.is-invalid]="lastNameNotValid">
+                                        <small *ngIf="lastNameNotValid" class="text-danger">
+                                            Ingrese los apellidos...
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="Identification">Identificación<span class="rojo"> *</span></label>
+                                        <input type="text" id="Identification" class="form-control" placeholder="" formControlName="Identification" [class.is-invalid]="identificationNotValid">
+                                        <small *ngIf="identificationNotValid" class="text-danger">
+                                            Ingrese la identificación...
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="PhoneNumber">Teléfono<span class="rojo"> *</span></label>
+                                        <input type="text" id="PhoneNumber" class="form-control" placeholder="" formControlName="PhoneNumber" [class.is-invalid]="phoneNumberNotValid">
+                                        <small *ngIf="phoneNumberNotValid" class="text-danger">
+                                            Ingrese el número teléfonico...
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group mt-4">
+                            <div class="input-group col">
+                                <button type="submit" class="btn btn-primary btn-block">
+                                    <i class="ni ni-send"></i>&nbsp;&nbsp;Guardar
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,10 +2,10 @@ export class ClientModel {
 
     Id: number;
     IdStatus: number;
-    FirstName: String;
-    LastName: String;
-    Identification: String;
-    PhoneNumber: String;
+    FirstName: string;
+    LastName: string;
+    Identification: string;
+    PhoneNumber: string;
     CreatedDate: Date;
     UpdateDate: Date;
 

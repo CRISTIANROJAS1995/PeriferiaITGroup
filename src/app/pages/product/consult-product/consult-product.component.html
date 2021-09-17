@@ -1,1 +1,76 @@
-<p>consult-product works!</p>
+<div class="header bg-gradient-dark pb-3 pt-5 pt-md-6">
+    <div class="container-fluid mt-5">
+        <div class="header-body">
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-5">
+    <form>
+        <div class="row">
+            <div class="col-lg text-start" *ngIf="products.length > 0">
+                <input class="form-control" placeholder="Escribir busqueda" type="text" [formControl]="filter" />
+            </div>
+            <div class="col-lg text-end">
+                <button class="btn btn-primary" type="button" [routerLink]="['/product', 'new']">
+                    <i class="fas fa-plus"></i>&nbsp; Agregar Producto
+                </button>
+            </div>
+        </div>
+    </form>
+    <div class="table table-responsive mt-4" *ngIf="products.length > 0">
+        <table class="table table-hover mt-3">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col"><i class="bi bi-list"></i></th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Valor Unitario</th>
+                    <th scope="col">Fecha Creación</th>
+                    <th scope="col">Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of products$ | async; index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>
+                        <ngb-highlight [result]="product.Name" [term]="filter.value"></ngb-highlight>
+                    </td>
+                    <td>
+                        {{ product.UnitValue | currency }}
+                    </td>
+                    <td>
+                        {{ product.CreatedDate | date }}
+                    </td>
+                    <td>
+                        <span class="badge badge-dot mr-4" *ngIf="product.IdStatus == 1">
+                            <i class="bg-success"></i> Activo
+                        </span>
+                        <span class="badge badge-dot mr-4" *ngIf="product.IdStatus != 1">
+                            <i class="bg-warning"></i> Inactivo
+                        </span>
+                    </td>
+                    <td>
+                        <div class="row">
+                            <div class="col">
+                                <button class="btn btn-primary" type="button" [routerLink]="['/product', product.Id]" placement="top" ngbTooltip="Editar">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger ml-1" type="button" (click)="deleteClient(product)" placement="bottom" ngbTooltip="Eliminar">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="16" class="table-active"><i class="fas fa-list"></i>&nbsp;Total Registros: {{products.length}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="alert alert-default text-center mt-4" *ngIf="products.length == 0">
+        <h4 class="alert-heading">No hay productos creados.</h4>
+    </div>
+</div>

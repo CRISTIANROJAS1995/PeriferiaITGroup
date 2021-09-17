@@ -2,7 +2,7 @@ export class ProductModel {
 
     Id: number;
     IdStatus: number;
-    Name: String;
+    Name: string;
     UnitValue: number;
     CreatedDate: Date;
     UpdateDate: Date;
