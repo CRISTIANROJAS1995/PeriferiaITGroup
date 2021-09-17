@@ -25,22 +25,6 @@ export class UserService {
     return this.loggedIn.asObservable();
   }
 
-  getStatistics() {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
-    });
-    return this.http.get(`${environment.baseUrl}/User/GetStatistics`, { headers: reqHeader });
-  }
-
-  getUsersRequestEmployed() {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
-    });
-    return this.http.get(`${environment.baseUrl}/User/GetUsersRequestEmployed`, { headers: reqHeader });
-  }
-
   login(value: LoginModel): Observable<any> {
     return this.http.post(`${environment.baseUrl}/User/Login`, value)
       .pipe(
@@ -56,54 +40,11 @@ export class UserService {
       )
   }
 
-  register(value: UserModel): Observable<any> {
-    return this.http.post(`${environment.baseUrl}/User/Register`, value)
-  }
-
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('userData');
     this.loggedIn.next(false);
   }
-
-  updatePassword(value: LoginModel) {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
-    });
-    return this.http.post(`${environment.baseUrl}/Token/UpdatePassword`, value, { headers: reqHeader })
-      .pipe(
-        map(
-          (resp: any) => {
-            if (resp.Data != null) {
-              this.saveToken(resp.Data.Token);
-              this.saveDataUser(resp.Data.User);
-              this.loggedIn.next(true);
-            }
-            return resp;
-          })
-      )
-  }
-
-  activateUserRequestEmployed(value: UserModel[]) {
-
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
-    });
-
-    console.log(value)
-    return this.http.post(`${environment.baseUrl}/User/ActivateUserRequestEmployed`, value, { headers: reqHeader })
-  }
-
-  getCountry() {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
-    });
-    return this.http.get(`${environment.baseUrl}/User/GetCountry`);
-  }
-
 
   private saveToken(token: string): void {
     if (token != '') {
