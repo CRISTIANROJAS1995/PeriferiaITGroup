@@ -29,6 +29,14 @@ export class ClientService {
     return this.http.get(`${environment.baseUrl}/Process/GetClient/${idClient}`, { headers: reqHeader });
   }
 
+  getClientByIdentification(identification: any) {
+    let reqHeader = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    return this.http.get(`${environment.baseUrl}/Process/GetClientByIdentification/${identification}`, { headers: reqHeader });
+  }
+
   deleteClient(idClient: number) {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',

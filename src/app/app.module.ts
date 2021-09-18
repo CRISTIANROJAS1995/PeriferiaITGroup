@@ -13,6 +13,8 @@ import { NgbModule, NgbPaginationModule, NgbAlertModule  } from '@ng-bootstrap/n
 import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
 
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
 
 @NgModule({
   imports: [
@@ -25,7 +27,8 @@ import { ComponentsModule } from './components/components.module';
     AppRoutingModule,
     NgbPaginationModule, 
     NgbAlertModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   declarations: [

@@ -8,6 +8,7 @@ import { JwtHelperService } from '@auth0/angular-jwt'
 import { LoginModel } from '../models/user/login.model';
 import { UserModel } from '../models/user/user.model';
 import { ProductModel } from '../models/product/product.model';
+import { ProductSaleModel } from '../models/sale/product-sale.model';
 
 const helper = new JwtHelperService();
 
@@ -19,7 +20,7 @@ export class ProcessService {
   constructor(private http: HttpClient) {
   }
 
-  addTransaction(value: ProductModel): Observable<any> {
+  addTransaction(value: ProductSaleModel[]): Observable<any> {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + localStorage.getItem('token')

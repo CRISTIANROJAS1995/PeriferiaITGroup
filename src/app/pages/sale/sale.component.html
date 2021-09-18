@@ -1,1 +1,127 @@
-<p>sale works!</p>
+<div class="header bg-gradient-dark pb-3 pt-5 pt-md-6">
+    <div class="container-fluid mt-5">
+        <div class="header-body">
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-5">
+
+    <form class="mt-4 mb-4" [formGroup]="frmSearch" (ngSubmit)="searchClient()">
+        <div class="row">
+            <div class="col-lg text-start">
+                <input type="text" id="Identification" class="form-control" placeholder="Digitar número de identificación" formControlName="Identification" [class.is-invalid]="identificationNotValid">
+                <small *ngIf="identificationNotValid" class="text-danger">
+                    Ingrese la identificación...
+                </small>
+            </div>
+            <div class="col-lg">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-search"></i>&nbsp; Buscar Cliente
+                </button>
+            </div>
+        </div>
+    </form>
+    <div class="card bg-secondary shadow" *ngIf="isShowForms">
+        <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0"><i class="fas fa-list-ul"></i>&nbsp;&nbsp;Información del cliente</h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row mb-4">
+                <div class="col-lg-4">
+                    <dt>Nombres</dt>
+                    <dd>{{ client.FirstName }}</dd>
+                </div>
+                <div class="col-lg-4">
+                    <dt>Apellidos</dt>
+                    <dd>{{ client.LastName }}</dd>
+                </div>
+                <div class="col-lg-4">
+                    <dt>Identificación</dt>
+                    <dd>{{ client.Identification }}</dd>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <dt>Teléfono</dt>
+                    <dd>{{ client.PhoneNumber }}</dd>
+                </div>
+                <div class="col-lg-4">
+                    <dt>Fecha Creación</dt>
+                    <dd>{{ client.CreatedDate | date }}</dd>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4" *ngIf="isShowForms">
+        <div class="col-lg">
+            <div class="form-group">
+                <label class="form-control-label" for="Name">Selección de productos a vender</label>
+                <ng-multiselect-dropdown [placeholder]="'Listado de productos'" [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelect)="onItemSelect($event)">
+                </ng-multiselect-dropdown>
+            </div>
+        </div>
+    </div>
+
+    <div class="table table-responsive mt-3" *ngIf="isShowForms">
+        <table class="table table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col"><i class="bi bi-list"></i></th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Valor Unitario</th>
+                    <th scope="col">Valor Total</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="selectedItems.length == 0">
+                <tr>
+                    <td colspan="12">
+                        <div class="alert alert-neutral text-center">
+                            <h4 class="alert-heading">No hay productos seleccionados.</h4>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody *ngIf="selectedItems.length > 0">
+                <tr *ngFor="let product of productSelectSale; index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>
+                        {{ product.Name }}
+                    </td>
+                    <td colspan="1">
+                        <input type="number" [(ngModel)]="product.Amount" class="form-control text-center" placeholder="#" />
+                    </td>
+                    <td>
+                        {{ product.UnitValue | currency }}
+                    </td>
+                    <td>
+                        {{ totalValue(product) | currency }}
+                    </td>
+                </tr>
+                <tr class="table-active">
+                    <td colspan="4"><i class="fas fa-list"></i>&nbsp;Cantidad Productos: {{selectedItems.length}}
+                    </td>
+                    <td colspan="1">
+                        <h2><b>{{globalTotalValue() | currency}}</b> </h2>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row mb-5" *ngIf="isShowForms">
+        <div class="col-md text-center">
+            <button class="btn btn-icon btn-primary btn-lg btn-block" type="button" (click)="sendData()">
+                <span class="btn-inner--icon"><i class="ni ni-bag-17"></i></span>
+                <span class="btn-inner--text">Guardar Venta</span>
+            </button>
+        </div>
+    </div>
+
+</div>
